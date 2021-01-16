@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function Login() {
+export default function Signin() {
 
     const nameRef = useRef();
     const passwordRef = useRef();
@@ -41,8 +41,8 @@ export default function Login() {
             <label htmlFor="userName">User Name:</label>
             <input type="text" id="userName" ref={nameRef} required/>
             <label htmlFor="password">Password:</label>
-            <input type="password" id="password" ref={passwordRef} required />
-            <button type="submit">Sign in</button>
+            <input type="password" id="password" ref={passwordRef} required />            
+            <input type="submit" value="Sign in" className="signinBtn" />
         </form>
     )
 }

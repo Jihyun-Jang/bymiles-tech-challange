@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from './Login';
+import Signin from './Signin';
 import PolicyDetail from './PolicyDetail';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Login />
+          <Signin />
         </Route>
         <Route path="/policy-detail">
           <PolicyDetail />
