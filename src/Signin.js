@@ -37,11 +37,11 @@ export default function Signin() {
 
     return (
         <form onSubmit={handleSubmit} >
-            <h1>Sign In</h1>
+            <h2>Sign In</h2>
             <label htmlFor="userName">User Name:</label>
             <input type="text" id="userName" ref={nameRef} required/>
             <label htmlFor="password">Password:</label>
-            <input type="password" id="password" ref={passwordRef} required />            
+            <input type="password" id="password" ref={passwordRef} minLength="6" required />            
             <input type="submit" value="Sign in" className="signinBtn" />
         </form>
     )

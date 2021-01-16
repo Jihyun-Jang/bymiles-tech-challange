@@ -35,22 +35,22 @@ export default function PolicyDetail() {
 
         return (
             <div>
-                <p>Policy reference:</p>
+                <h4>Policy reference:</h4>
                 <p>{policyRef}</p>                    
-                <p>Cover type</p>
+                <h4>Cover type</h4>
                 <p>{cover}</p>
-                <p>Car</p>
+                <h4>Car</h4>
                 <p>{car}</p>
-                <p>Address</p>
+                <h4>Address</h4>
                 <p>{fullAddress}</p>           
             </div>
         )
     }    
 
     return (
-        <div>
+        <div className="policyContainer">
             { token? <>
-                <h1>My Policy</h1>
+                <h2>My Policy</h2>
                 { policyData ? displayPolicy(policyData) : null }
             </> : <Redirect to='/' />}
         </div>
