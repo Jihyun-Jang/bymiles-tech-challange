@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom'
 
 export default function PolicyDetail() {
 
@@ -18,8 +19,7 @@ export default function PolicyDetail() {
             if(!res.ok) throw new Error(res.status);
             return res.json();
         })
-        .then(json => {    
-            console.log(json);              
+        .then(json => {                        
             return setPolicyData(json);            
         })
         .catch(error => console.error(error))
@@ -49,8 +49,10 @@ export default function PolicyDetail() {
 
     return (
         <div>
-            <h1>My Policy</h1>
-            { policyData ? displayPolicy(policyData) : null }           
+            { token? <>
+                <h1>My Policy</h1>
+                { policyData ? displayPolicy(policyData) : null }
+            </> : <Redirect to='/' />}
         </div>
     )
 }
