@@ -1,12 +1,37 @@
 import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
 
     const nameRef = useRef();
     const passwordRef = useRef();
+    const history = useHistory(); 
 
     function handleSubmit(e){
         e.preventDefault();
+
+        const data = {
+            "username": nameRef.current.value,
+            "password": passwordRef.current.value,
+            "type":"USER_PASSWORD_AUTH"
+        }
+
+        fetch("https://api.bybits.co.uk/auth/token", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { 
+                "content-type": "application/json",
+                "environment": "mock"
+            }
+        })
+        .then(res => {
+            if(!res.ok) throw new Error(res.status);
+            return res.json();
+        })
+        .then(json => {            
+            history.push('./policy-detail')
+        })
+        .catch(error => console.error(error))
     }
 
     return (
