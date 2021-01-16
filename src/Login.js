@@ -28,7 +28,8 @@ export default function Login() {
             if(!res.ok) throw new Error(res.status);
             return res.json();
         })
-        .then(json => {            
+        .then(json => {    
+            window.localStorage.setItem("access_token", json.access_token);        
             history.push('./policy-detail')
         })
         .catch(error => console.error(error))
