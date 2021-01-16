@@ -3,12 +3,10 @@ import React, { useState, useEffect } from 'react';
 export default function PolicyDetail() {
 
     const token = window.localStorage.getItem("access_token");
-    const [ policyData, setPolicyData ] = useState();
+    const [ policyData, setPolicyData ] = useState();    
 
-    useEffect(() => {
-        
+    useEffect(() => {        
         fetch("https://api.bybits.co.uk/policys/details", {
-
             method: "GET",
             headers: {
                 "environment": "mock",
@@ -20,24 +18,39 @@ export default function PolicyDetail() {
             if(!res.ok) throw new Error(res.status);
             return res.json();
         })
-        .then(json => {            
-            setPolicyData(json)
+        .then(json => {    
+            console.log(json);              
+            return setPolicyData(json);            
         })
         .catch(error => console.error(error))
-
     }, []);
+
+
+    function displayPolicy(info) {
+
+        const { policy: { policy_ref, cover, address }, vehicle } = info;
+        const policyRef = policy_ref.replaceAll("-", " ");
+        const car = `${vehicle.make.charAt(0).toUpperCase()+ vehicle.make.slice(1)} ${vehicle.model} ${vehicle.colour.charAt(0).toUpperCase()+ vehicle.colour.slice(1)} ${vehicle.reg}`;
+        const fullAddress = `${address.line_1}, ${address.line_2}, ${address.postcode}`;
+
+        return (
+            <div>
+                <p>Policy reference:</p>
+                <p>{policyRef}</p>                    
+                <p>Cover type</p>
+                <p>{cover}</p>
+                <p>Car</p>
+                <p>{car}</p>
+                <p>Address</p>
+                <p>{fullAddress}</p>           
+            </div>
+        )
+    }    
 
     return (
         <div>
             <h1>My Policy</h1>
-            {/* <p>Policy reference:</p>
-            <p>{}</p>
-            <p>Cover type</p>
-            <p>{}</p>
-            <p>Car</p>
-            <p>{}</p>
-            <p>Address</p>
-            <p>{}</p> */}
+            { policyData ? displayPolicy(policyData) : null }           
         </div>
     )
 }
