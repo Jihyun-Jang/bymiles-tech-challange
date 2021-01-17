@@ -23,7 +23,7 @@ export default function PolicyDetail() {
             return setPolicyData(json);            
         })
         .catch(error => console.error(error))
-    }, []);
+    }, [ token ]);
 
 
     function displayPolicy(info) {
@@ -51,7 +51,7 @@ export default function PolicyDetail() {
         <div className="policyContainer">
             { token? <>
                 <h2>My Policy</h2>
-                { policyData ? displayPolicy(policyData) : null }
+                { policyData && displayPolicy(policyData) }
             </> : <Redirect to='/' />}
         </div>
     )
