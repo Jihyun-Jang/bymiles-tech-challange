@@ -1,11 +1,9 @@
 import React, { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
-export default function Signin() {
+export default function Signin({ setAccessToken }) {
 
     const nameRef = useRef();
-    const passwordRef = useRef();
-    const history = useHistory(); 
+    const passwordRef = useRef();    
 
     function handleSubmit(e){
         e.preventDefault();
@@ -29,8 +27,7 @@ export default function Signin() {
             return res.json();
         })
         .then(json => {    
-            window.localStorage.setItem("access_token", json.access_token);        
-            history.push('./policy-detail')
+            setAccessToken(json.access_token);            
         })
         .catch(error => console.error(error))
     }
