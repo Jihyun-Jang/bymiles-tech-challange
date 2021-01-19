@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function DisplayPolicy({ policyData }) {
     const { policy: { policy_ref, cover, address }, vehicle } = policyData;
-    const policyRef = policy_ref.replaceAll("-", " ");
+    const policyRef = policy_ref.replace(/-/g, " ");
     const car = `${vehicle.make.charAt(0).toUpperCase()+ vehicle.make.slice(1)} ${vehicle.model} ${vehicle.colour.charAt(0).toUpperCase()+ vehicle.colour.slice(1)} ${vehicle.reg}`;
     const fullAddress = `${address.line_1}, ${address.line_2}, ${address.postcode}`;
 
